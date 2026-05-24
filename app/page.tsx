@@ -66,7 +66,7 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 28 }}>
             {[
               { label: "Total Products", value: products.length },
-              { label: "Total Warehouses", value: [...new Set(products.flatMap(p => p.inventories.map(i => i.warehouseId)))].length },
+              { label: "Total Warehouses", value: Array.from(new Set(products.flatMap(p => p.inventories.map(i => i.warehouseId)))).length },
               { label: "Units Available", value: products.reduce((acc, p) => acc + p.inventories.reduce((a, i) => a + (i.totalQuantity - i.reservedQuantity), 0), 0) },
             ].map(({ label, value }) => (
               <div key={label} style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "16px 20px", boxShadow: "var(--shadow-sm)" }}>
